@@ -22,8 +22,8 @@
                     <div class="table-cell">
                         <p>{tx.hash.substring(0, 6) + ".." + tx.hash.substring(58, tx.hash.length)}</p>
                     </div>
-                    <div class="table-cell end"><p>{formatXksAmount((tx.amount_out / 100000), 2)}</p></div>
-                    <div class="table-cell end fee"><p>{formatXksAmount((tx.fee / 100000), 2)}</p></div>
+                    <div class="table-cell end"><p>{formatXksAmount((tx.amount_out / 100000), 2)} XKR</p></div>
+                    <div class="table-cell end fee"><p>{formatXksAmount((tx.fee / 100000), 2)} XKR</p></div>
                 </div>
                 <div class="line"></div>
             {/each}

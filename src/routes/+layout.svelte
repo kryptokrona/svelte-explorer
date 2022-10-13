@@ -21,6 +21,8 @@
 
 </script>
 
+
+
 <!--Loading screen with animated logo-->
 {#if $appState.loading}
     <LoadingScreen/>
