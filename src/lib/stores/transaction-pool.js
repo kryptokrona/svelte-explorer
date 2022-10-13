@@ -2,7 +2,7 @@ import {writable} from "svelte/store";
 
 export const txPool = writable([])
 
-const fetchMempool = async () => {
+export const fetchMempool = async () => {
     const response = await fetch('https://blocksum.org/api/json_rpc', {
         method: 'POST',
         cache: 'no-cache',
@@ -18,6 +18,4 @@ const fetchMempool = async () => {
     let data = await response.json();
     txPool.set(data.result.transactions)
 }
-
-setInterval(fetchMempool, 1000 * 10)
 fetchMempool()
