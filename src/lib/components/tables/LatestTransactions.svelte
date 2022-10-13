@@ -3,6 +3,10 @@
     import {fade} from 'svelte/transition'
     import {formatXksAmount} from "$lib/utils/index.js";
     import Pill from "$lib/components/Pill.svelte";
+    import {onMount} from "svelte";
+
+    onMount(() => {
+    })
 </script>
 
 <div class="container">

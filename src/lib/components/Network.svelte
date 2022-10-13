@@ -1,10 +1,20 @@
 <script>
+    import {onMount} from "svelte";
+    import {getNodeData} from "$lib/data/get-data.js";
+    import {explorerData} from "$lib/stores/data.js";
 
+    onMount(() => {
+        setInterval(async () => {
+            $explorerData.node = await getNodeData()
+            console.log('runs')
+        }, 1000 * 10)
+    })
 </script>
 
 <div class="grid container">
     <div class="card">
         <h2>Hashrate</h2>
+        <p>{$explorerData.node.hashrate}</p>
     </div>
     <div class="card">
         <h2>Hashrate</h2>

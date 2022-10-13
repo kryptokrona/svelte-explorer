@@ -2,9 +2,6 @@
     import { explorerData } from "$lib/stores/data.js";
     import { fade } from 'svelte/transition'
     import { formatXksAmount } from "$lib/utils/index.js";
-
-
-    $: console.log($explorerData)
 </script>
 
 <div class="container">
