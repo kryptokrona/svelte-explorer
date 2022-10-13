@@ -8,7 +8,7 @@
     import {explorerData} from "$lib/stores/data.js";
 </script>
 
-<div class="container">
+<div style="width: 100%">
     <div class="title">
         <h2>Mempool</h2>
         <Pill text={$txPool.length}/>
@@ -16,7 +16,6 @@
     <div class="wrapper layered-shadow">
         <div class="table-header">
             <div class="table-row">
-                <div class="table-cell hide"><h4>Time</h4></div>
                 <div class="table-cell"><h4>Hash</h4></div>
                 <div class="table-cell end"><h4>Amount</h4></div>
                 <div class="table-cell end hide"><h4>Fee</h4></div>
@@ -25,7 +24,6 @@
         <div class="table-body">
             {#each $txPool ?? [] as tx}
                 <div in:fade out:fade class="table-row">
-                    <div class="table-cell hide"><p>a minute ago</p></div>
                     <div class="table-cell">
                         <p>{tx.hash.substring(0, 6) + ".." + tx.hash.substring(58, tx.hash.length)}</p>
                     </div>

@@ -1,5 +1,10 @@
 let api = "https://blocksum.org/api";
 
+export async function getNodeData() {
+    const req = await fetch(api + '/getinfo')
+    return await req.json()
+}
+
 export async function getCurrentBlock() {
     const req = await fetch(api + '/json_rpc', {
         method: 'POST',
@@ -61,29 +66,25 @@ export async function getLatestBlocks(numberOfBlocks = 10) {
     return data
 }
 
-export async function getTransactions(amount = 10) {
-    let currentBlock = await getCurrentBlock()
-    let blockHash = currentBlock.hash
 
-    let transactionCount = 0
+export async function getTransactions(amount = 10) {
+    const currentBlock = await getCurrentBlock()
+    const currentBlockByHash = await getByBlockHash(currentBlock.hash)
+    let blockHash = currentBlockByHash.result.block.hash
+
     let data = []
 
+    let transactions = 0
     for (let i = 0; i < amount; i++) {
         blockHash = await getByBlockHash(blockHash)
-        const block = await blockHash.result.block;
-            for (let y = 0; y < block.transactions.length; y++) {
-
-                transactionCount++;
+        const block = blockHash.result.block;
+        for (let y = 0; y < block.transactions.length; y++) {
+            if(transactions < amount){
+                data.push(block.transactions[y])
+                transactions++
             }
-            blockHash = block.prev_hash;
         }
-
-    await getByBlockHash(blockHash).then(data => {
-        blockHash = data.result.block.prev_hash;
-    });
-}
-
-export async function getNodeData() {
-    const req = await fetch(api + '/getinfo')
-    return await req.json()
+        blockHash = block.prev_hash;
+    }
+    return data
 }

@@ -1,18 +1,17 @@
 <script>
-    import {txPool} from "$lib/stores/transaction-pool.js";
+    import {explorerData} from "$lib/stores/data.js";
     import {fade} from 'svelte/transition'
     import {formatXksAmount} from "$lib/utils/index.js";
-    import Pill from "$lib/components/Pill.svelte";
     import {onMount} from "svelte";
 
     onMount(() => {
+
     })
 </script>
 
-<div class="container">
+<div style="width: 100%">
     <div class="title">
-        <h2>Mempool</h2>
-        <Pill text={$txPool.length}/>
+        <h2>Transactions</h2>
     </div>
     <div class="wrapper layered-shadow">
         <div class="table-header">
@@ -23,7 +22,7 @@
             </div>
         </div>
         <div class="table-body">
-            {#each $txPool ?? [] as tx}
+            {#each $explorerData.transactions ?? [] as tx}
                 <div in:fade out:fade class="table-row">
                     <div class="table-cell">
                         <p>{tx.hash.substring(0, 6) + ".." + tx.hash.substring(58, tx.hash.length)}</p>
@@ -68,8 +67,6 @@
 
   .table-body {
     background-color: var(--table-body-background);
-    max-height: 300px;
-    min-height: 200px;
     overflow: scroll;
     border-radius: 0 0 5px 5px;
 

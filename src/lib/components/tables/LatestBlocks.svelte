@@ -4,14 +4,13 @@
     import { formatXksAmount } from "$lib/utils/index.js";
 </script>
 
-<div class="container">
+<div style="width: 100%">
     <div class="title">
         <h2>Blocks</h2>
     </div>
     <div class="wrapper layered-shadow">
         <div class="table-header">
             <div class="table-row">
-                <div class="table-cell hide"><h4>Time</h4></div>
                 <div class="table-cell"><h4>Hash</h4></div>
                 <div class="table-cell end"><h4>Transactions</h4></div>
                 <div class="table-cell end hide"><h4>Reward</h4></div>
@@ -20,7 +19,6 @@
         <div class="table-body">
             {#each $explorerData.blocks ?? [] as block}
                 <div in:fade out:fade class="table-row">
-                    <div class="table-cell hide"><p>a minute ago</p></div>
                     <div class="table-cell">
                         <p>{block.hash.substring(0, 6) + ".." + block.hash.substring(58, block.hash.length)}</p>
                     </div>
