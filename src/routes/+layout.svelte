@@ -3,11 +3,20 @@
     import {appState} from "$lib/stores/app-state.js";
     import LoadingScreen from "$lib/components/LoadingScreen.svelte";
     import {onMount} from "svelte";
+    import {explorerData} from "$lib/stores/data.js";
+    import {getCurrentBlock, getLatestBlocks, getNodeData, getTransactions} from "$lib/data/get-data.js";
 
     onMount(() => {
         setTimeout(() => {
             $appState.loading = false
         }, 1000)
+
+        setInterval(async () => {
+            $explorerData.node = await getNodeData()
+            $explorerData.transactions = await getTransactions()
+            $explorerData.block = await getCurrentBlock()
+            $explorerData.blocks = await getLatestBlocks()
+        }, 1000 * 10)
     });
 
 </script>

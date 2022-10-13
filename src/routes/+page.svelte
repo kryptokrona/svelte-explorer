@@ -20,5 +20,9 @@
     justify-content: space-between;
     width: 100%;
     gap: 1rem;
+
+    @media screen and (max-width: 868px){
+        flex-direction: column;
+    }
   }
 </style>

@@ -2,11 +2,6 @@
     import {explorerData} from "$lib/stores/data.js";
     import {fade} from 'svelte/transition'
     import {formatXksAmount} from "$lib/utils/index.js";
-    import {onMount} from "svelte";
-
-    onMount(() => {
-
-    })
 </script>
 
 <div style="width: 100%">
@@ -58,7 +53,7 @@
   .table-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px 2rem;
+    padding: 10px 1.5rem;
   }
 
   .table-cell {

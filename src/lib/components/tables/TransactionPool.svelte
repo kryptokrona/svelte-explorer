@@ -3,9 +3,6 @@
     import {fade} from 'svelte/transition'
     import {formatXksAmount} from "$lib/utils/index.js";
     import Pill from "$lib/components/Pill.svelte";
-    import {onMount} from "svelte";
-    import {getNodeData} from "$lib/data/get-data.js";
-    import {explorerData} from "$lib/stores/data.js";
 </script>
 
 <div style="width: 100%">
@@ -58,7 +55,7 @@
   .table-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px 2rem;
+    padding: 10px 1.5rem;
   }
 
   .table-cell {

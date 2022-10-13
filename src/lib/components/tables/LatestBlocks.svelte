@@ -53,7 +53,7 @@
   .table-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px 2rem;
+    padding: 10px 1.5rem;
   }
 
   .table-cell {
