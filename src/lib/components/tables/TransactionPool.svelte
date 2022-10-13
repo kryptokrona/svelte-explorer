@@ -64,8 +64,7 @@
 
   .table-body {
     background-color: var(--table-body-background);
-    max-height: 300px;
-    min-height: 200px;
+    height: 282px;
     overflow: scroll;
     border-radius: 0 0 5px 5px;
 
