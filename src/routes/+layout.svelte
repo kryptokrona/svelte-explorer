@@ -27,7 +27,7 @@
             await fetchMempool()
 
             if(checkIfNewBlock(prevBlock, currentBlock)) {
-                toast.success('Always at the bottom.', {
+                toast.success(`Block ${currentBlock} found`, {
                     position: "top-right"
                 })
             }
