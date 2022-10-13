@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/fonts/Montserrat-Regular.woff') format('woff'),
+  url('/fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url('/fonts/RobotoMono-Regular.woff') format('woff'),
+  url('/fonts/RobotoMono-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  height: 100%;
+  background: radial-gradient(#232323, #121212) #121212 no-repeat fixed center;
+}
+
+.layered-shadow {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05),
+  0 6px 12px rgba(0, 0, 0, 0.10);
+}
+
+.container {
+  max-width: 1200px;
+  max-height: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-family: "Montserrat", serif;
+  color: var(--title-color);
+}
+
+p {
+  margin: 0;
+  font-family: "Montserrat", serif;
+  color: var(--text-color)
+}
+
+a {
+  color: var(--text-color)
+}
+
+
+.card {
+  padding: 1rem 1.5rem;
+  border-radius: var(--card-border-radius);
+  background-color: var(--card-background);
+  border: var(--card-border);
+  row-gap: 1rem;
+}
+
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: var(--row-divider-color);
+}
