@@ -54,8 +54,9 @@
       }
 
       .time {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         opacity: 50%;
+        text-align: center;
       }
     }
 </style>
