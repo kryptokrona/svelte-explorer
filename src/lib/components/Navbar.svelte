@@ -1,11 +1,12 @@
 <script>
     import Search from "$lib/components/Search.svelte";
+    import Logo from "$lib/components/Logo.svelte";
 
 </script>
 
 <nav class="container">
     <div class="navigation">
-        <a href="/"><h1>Explorer</h1></a>
+        <a href="/"><Logo/></a>
         <Search/>
     </div>
 </nav>
@@ -27,6 +28,6 @@
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    margin: 1rem 1rem;
+    margin: 1rem;
   }
 </style>
