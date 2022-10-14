@@ -4,18 +4,6 @@
     import {onMount} from "svelte";
     import {prettifyHashrate} from "$lib/utils";
 
-    let time
-
-    const getTime = () => {
-        let currentTime = Date.now();
-        let ms = currentTime - $explorerData.block.timestamp * 1000;
-        time = calcTime(ms)
-        setInterval(() => {
-            currentTime = Date.now();
-            ms = currentTime - $explorerData.block.timestamp * 1000;
-            time = calcTime(ms)
-        }, 1000)
-    }
 
     onMount(() => {
         getTime()
@@ -37,8 +25,8 @@
         <p>{(($explorerData.node.difficulty / 1000000).toFixed(2))} M</p>
     </div>
     <div class="card">
-        <h2>Last block</h2>
-        <p>{time} ago</p>
+        <h2>Difficulty</h2>
+        <p>{(($explorerData.node.difficulty / 1000000).toFixed(2))} M</p>
     </div>
 </div>
 
