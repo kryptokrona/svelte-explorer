@@ -6,7 +6,7 @@ export async function GET({params}) {
     const numbers = /^[0-9]+$/;
 
     if (input.match(numbers)) {
-        return json(await getBlock(input))
+        return json(await getBlock(parseInt(input)))
     } else if (input === 'current') {
         return json(await getCurrentBlock())
     }
