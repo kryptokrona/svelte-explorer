@@ -14,6 +14,8 @@
     let audio;
     onMount(() => {
 
+        audio.src = '/pop.mp3'
+
         setTimeout(() => {
             $appState.loading = false
         }, 1000)
@@ -27,8 +29,6 @@
             $explorerData.blocks = await getLatestBlocks()
             currentBlock = $explorerData.block
             await fetchMempool()
-
-            audio.src = '/pop.mp3'
 
             if(checkIfNewBlock(prevBlock, currentBlock)) {
                 toast.success(`Block ${currentBlock.height} found!`, {
