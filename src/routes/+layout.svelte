@@ -13,7 +13,6 @@
     let currentBlock
 
     onMount(() => {
-
         setTimeout(() => {
             $appState.loading = false
         }, 1000)
