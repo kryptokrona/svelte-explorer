@@ -8,7 +8,7 @@
     <div class="title">
         <h2>Blocks</h2>
     </div>
-    <div class="wrapper layered-shadow">
+    <div class="wrapper">
         <div class="table-header">
             <div class="table-row-header">
                 <div class="table-cell"><h5>Height</h5></div>

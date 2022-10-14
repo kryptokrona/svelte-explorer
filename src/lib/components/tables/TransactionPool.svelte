@@ -9,7 +9,7 @@
         <h2>Mempool</h2>
         <Pill text={$txPool.length}/>
     </div>
-    <div class="wrapper layered-shadow">
+    <div class="wrapper">
         <div class="table-header">
             <div class="table-row">
                 <div class="table-cell"><h5>Hash</h5></div>

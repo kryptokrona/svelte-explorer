@@ -29,7 +29,7 @@ body {
   margin-bottom: 2rem;
   font-family: "Helvetica Neue", sans-serif;
   height: 100%;
-  background: radial-gradient(#232323, #121212) #121212 no-repeat fixed center;
+  background-color: var(--backgound-color);
 }
 
 .layered-shadow {

@@ -24,13 +24,22 @@
 @media (prefers-color-scheme: light) {
   :root {
     --website-max-width: 1200px;
-
-    --backgound-color: #ffefff;
-    --title-color: #2a2a2a;
-    --text-color: #2a2a2a;
+    --backgound-color: #fcfcfc;
+    --backdrop-color: rgba(0, 0, 0, 0.91);
+    --title-color: #001129;
+    --text-color: #001129;
 
     --card-border: 1px solid #ffffff;
-    --card-background: #fffbff;
-    --row-divider-color: #fff0ff;
+    --card-background: #eeeeee;
+    --card-border-radius: 5px;
+
+    --table-header-background: #d5d5d5;
+    --table-body-background: #eeeeee;
+    --table-border-color: #d5d5d5;
+    --table-row-hover: #f5f5f5;
+
+    --row-divider-color: #d5d5d5;
+
+    --input-background-colot: #2e3035;
   }
 }
