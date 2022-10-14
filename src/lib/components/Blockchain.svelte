@@ -7,7 +7,7 @@
 
 <div class="container wrapper">
     <div class="block">
-        <div></div>
+        <h4>{$explorerData.node.height}</h4>
         <Moon color="var(--title-color)" size="30"/>
         <div></div>
     </div>

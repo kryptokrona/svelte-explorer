@@ -6,8 +6,8 @@
     import Blockchain from "$lib/components/Blockchain.svelte";
 </script>
 
-<Blockchain/>
 <Network/>
+<Blockchain/>
 <div class="container">
     <TransactionPool/>
 </div>
