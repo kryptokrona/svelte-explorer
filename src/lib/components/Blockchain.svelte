@@ -1,6 +1,6 @@
 <script>
     import {explorerData} from "$lib/stores/data";
-    import {fade} from 'svelte/transition'
+    import {fly, fade} from 'svelte/transition'
     import { Moon } from 'svelte-loading-spinners'
     import Time from "svelte-time";
 </script>
@@ -11,13 +11,35 @@
         <Moon color="var(--title-color)" size="30"/>
         <div></div>
     </div>
-    {#each $explorerData.blocks.slice(0,6) ?? [] as block, i}
-        <div in:fade|local class="block">
-            <h4>{block.height}</h4>
-            <p>{block.num_txes} txs</p>
-            <p>{(block.reward / 100000).toFixed(2)}</p>
-            <p class="time"><Time relative timestamp={block.timestamp * 1000}/></p>
-        </div>
+    {#each $explorerData.blocks.slice(0, 6) ?? [] as block, i}
+        {#if (i === 0)}
+
+            <div in:fly class="block">
+                <h4>{block.height}</h4>
+                <p>{block.num_txes} txs</p>
+                <p>{(block.reward / 100000).toFixed(2)}</p>
+                <p class="time"><Time relative timestamp={block.timestamp * 1000}/></p>
+            </div>
+
+            {:else if (i === 6)}
+
+            <div out:fly|local class="block">
+                <h4>{block.height}</h4>
+                <p>{block.num_txes} txs</p>
+                <p>{(block.reward / 100000).toFixed(2)}</p>
+                <p class="time"><Time relative timestamp={block.timestamp * 1000}/></p>
+            </div>
+
+            {:else}
+
+            <div in:fade|local class="block">
+                <h4>{block.height}</h4>
+                <p>{block.num_txes} txs</p>
+                <p>{(block.reward / 100000).toFixed(2)}</p>
+                <p class="time"><Time relative timestamp={block.timestamp * 1000}/></p>
+            </div>
+        {/if}
+
     {/each}
 </div>
 

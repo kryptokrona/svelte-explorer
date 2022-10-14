@@ -11,6 +11,7 @@
 
     let prevBlock
     let currentBlock
+    let audio;
     onMount(() => {
 
         setTimeout(() => {
@@ -27,26 +28,29 @@
             currentBlock = $explorerData.block
             await fetchMempool()
 
+            audio.src = '/pop.mp3'
+
             if(checkIfNewBlock(prevBlock, currentBlock)) {
                 toast.success(`Block ${currentBlock.height} found!`, {
                     position: "top-center"
                 })
+                audio.play()
             }
         }, 1000 * 10)
 
     });
 </script>
 
-
-
 <!--Loading screen with animated logo-->
 {#if $appState.loading}
     <LoadingScreen/>
 {/if}
 
+<Toaster/>
+<audio src="/pop.mp3" bind:this={audio}></audio>
+
 <!--Page content-->
 <Navbar/>
-<Toaster/>
 <slot />
 
 <style global lang="scss">
