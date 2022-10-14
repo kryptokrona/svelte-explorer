@@ -11,9 +11,9 @@
     <div class="wrapper layered-shadow">
         <div class="table-header">
             <div class="table-row-header">
-                <div class="table-cell"><h4>Hash</h4></div>
-                <div class="table-cell end"><h4>Amount</h4></div>
-                <div class="table-cell end fee"><h4>Fee</h4></div>
+                <div class="table-cell"><h5>Hash</h5></div>
+                <div class="table-cell end"><h5>Amount (XKR)</h5></div>
+                <div class="table-cell end fee"><h5>Fee (XKR)</h5></div>
             </div>
         </div>
         <div class="table-body">
@@ -22,8 +22,8 @@
                     <div class="table-cell">
                         <p>{tx.hash.substring(0, 6) + ".." + tx.hash.substring(58, tx.hash.length)}</p>
                     </div>
-                    <div class="table-cell end"><p>{formatXksAmount((tx.amount_out / 100000), 2)} XKR</p></div>
-                    <div class="table-cell end fee"><p>{formatXksAmount((tx.fee / 100000), 2)} XKR</p></div>
+                    <div class="table-cell end"><p>{formatXksAmount((tx.amount_out / 100000), 2)}</p></div>
+                    <div class="table-cell end fee"><p>{formatXksAmount((tx.fee / 100000), 2)}</p></div>
                 </div>
                 <div class="line"></div>
             {/each}
