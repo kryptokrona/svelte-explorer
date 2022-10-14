@@ -1,6 +1,5 @@
 <script>
     import {txPool} from "$lib/stores/transaction-pool.js";
-    import {fade} from 'svelte/transition'
     import {formatXksAmount} from "$lib/utils/index.js";
     import Pill from "$lib/components/Pill.svelte";
 </script>
@@ -20,7 +19,7 @@
         </div>
         <div class="table-body">
             {#each $txPool ?? [] as tx}
-                <div in:fade out:fade class="table-row">
+                <div class="table-row">
                     <div class="table-cell">
                         <p>{tx.hash.substring(0, 6) + ".." + tx.hash.substring(58, tx.hash.length)}</p>
                     </div>

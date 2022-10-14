@@ -1,7 +1,7 @@
 <script>
     import {explorerData} from "$lib/stores/data.js";
-    import {fade} from 'svelte/transition'
     import {formatXksAmount} from "$lib/utils/index.js";
+    import {goto} from "$app/navigation";
 </script>
 
 <div style="width: 100%">
@@ -10,7 +10,7 @@
     </div>
     <div class="wrapper layered-shadow">
         <div class="table-header">
-            <div class="table-row">
+            <div class="table-row-header">
                 <div class="table-cell"><h4>Hash</h4></div>
                 <div class="table-cell end"><h4>Amount</h4></div>
                 <div class="table-cell end fee"><h4>Fee</h4></div>
@@ -18,7 +18,7 @@
         </div>
         <div class="table-body">
             {#each $explorerData.transactions ?? [] as tx}
-                <div in:fade out:fade class="table-row">
+                <div class="table-row" on:click={() => goto(`/tx/${tx.hash}`)}>
                     <div class="table-cell">
                         <p>{tx.hash.substring(0, 6) + ".." + tx.hash.substring(58, tx.hash.length)}</p>
                     </div>
@@ -50,10 +50,22 @@
     border-radius: 5px 5px 0 0;
   }
 
+  .table-row-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 1.5rem;
+  }
+
   .table-row {
     display: flex;
     justify-content: space-between;
     padding: 10px 1.5rem;
+    transition: 150ms ease-in-out;
+
+    &:hover {
+      background-color: var(--table-row-hover);
+      cursor: pointer;
+    }
   }
 
   .table-cell {
