@@ -1,10 +1,7 @@
 <script>
     import {explorerData} from "$lib/stores/data.js";
-    import {onMount} from "svelte";
 
     export let data = []
-
-    console.log(data)
 
 </script>
 
@@ -12,7 +9,7 @@
     <div class="title">
         <h2>Transaction</h2>
     </div>
-    <div class="wrapper layered-shadow">
+    <div class="wrapper">
         <div class="table-header">
             <div class="table-row">
                 <div><h4>

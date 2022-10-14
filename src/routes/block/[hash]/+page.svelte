@@ -4,8 +4,6 @@
 
     export let data = []
 
-    console.log(data)
-
 </script>
 
 <div class="container">
@@ -80,7 +78,7 @@
     <div class="title">
         <h2>Transactions</h2>
     </div>
-    <div class="wrapper layered-shadow">
+    <div class="wrapper">
         <div class="table-header">
             <div class="table-row">
                 <div class="table-cell"><h4>Hash</h4></div>
