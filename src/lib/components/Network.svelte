@@ -1,5 +1,26 @@
 <script>
     import {explorerData} from "$lib/stores/data.js";
+    import {calcTime} from "$lib/utils/index.js";
+    import {onMount} from "svelte";
+    import {prettifyHashrate} from "$lib/utils";
+
+    let time
+
+    const getTime = () => {
+        let currentTime = Date.now();
+        let ms = currentTime - $explorerData.block.timestamp * 1000;
+        time = calcTime(ms)
+        setInterval(() => {
+            currentTime = Date.now();
+            ms = currentTime - $explorerData.block.timestamp * 1000;
+            time = calcTime(ms)
+        }, 1000)
+    }
+
+    onMount(() => {
+        getTime()
+    })
+
 </script>
 
 <div class="grid container">
@@ -9,15 +30,15 @@
     </div>
     <div class="card">
         <h2>Hashrate</h2>
-        <p>{$explorerData.node.hashrate}</p>
+        <p>{prettifyHashrate($explorerData.node.hashrate, 2)}</p>
     </div>
     <div class="card">
         <h2>Difficulty</h2>
-        <p>{$explorerData.node.difficulty}</p>
+        <p>{(($explorerData.node.difficulty / 1000000).toFixed(2))} M</p>
     </div>
     <div class="card">
         <h2>Last block</h2>
-        <p>{$explorerData.block.timestamp}</p>
+        <p>{time} ago</p>
     </div>
 </div>
 
@@ -34,13 +55,13 @@
     grid-column: span 3 / span 3;
   }
 
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 768px) {
     .card {
       grid-column: span 6 / span 6;
     }
   }
 
-  @media screen and (max-width: 568px){
+  @media screen and (max-width: 568px) {
     .card {
       grid-column: span 12 / span 12;
     }

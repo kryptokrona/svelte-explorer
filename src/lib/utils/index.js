@@ -19,3 +19,27 @@ export function checkIfNewBlock(prevBlock, newBlock) {
         return true
     }
 }
+
+export const calcTime = (ms) => {
+    const s = ("0" + Math.floor((ms / (1000)) % 60)).substr(-2);
+    const m = ("0" + Math.floor((ms / (60 * 1000)) % 60)).substr(-2);
+    return m + ":" + s;
+}
+
+export function prettifyHashrate(value, decimal) {
+    var kilo = 1000,
+        mega = 1000000,
+        giga = 1000000000,
+        tera = 1000000000000;
+
+    if (value < kilo) return String((value)
+        .toFixed(decimal) + ' H/s');
+    if (value >= kilo && value <= mega) return (value / kilo)
+        .toFixed(decimal) + ' KH/s';
+    if (value >= mega && value <= giga) return (value / mega)
+        .toFixed(decimal) + ' MH/s';
+    if (value >= giga && value <= tera) return (value / giga)
+        .toFixed(decimal) + ' GH/s';
+    else return (value / tera)
+        .toFixed(decimal) + ' TH/s';
+};
