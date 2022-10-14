@@ -4,17 +4,20 @@
 
 <div class="grid container">
     <div class="card">
+        <h2>Height</h2>
+        <p>{$explorerData.node.height}</p>
+    </div>
+    <div class="card">
         <h2>Hashrate</h2>
         <p>{$explorerData.node.hashrate}</p>
     </div>
     <div class="card">
-        <h2>Hashrate</h2>
+        <h2>Difficulty</h2>
+        <p>{$explorerData.node.difficulty}</p>
     </div>
     <div class="card">
-        <h2>Hashrate</h2>
-    </div>
-    <div class="card">
-        <h2>Hashrate</h2>
+        <h2>Last block</h2>
+        <p>{$explorerData.block.timestamp}</p>
     </div>
 </div>
 

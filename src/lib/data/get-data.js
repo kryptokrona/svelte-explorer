@@ -1,3 +1,5 @@
+import {goto} from "$app/navigation";
+
 let api = "https://blocksum.org/api";
 
 export async function getNodeData() {
@@ -79,7 +81,7 @@ export async function getTransactions(amount = 10) {
         blockHash = await getByBlockHash(blockHash)
         const block = blockHash.result.block;
         for (let y = 0; y < block.transactions.length; y++) {
-            if(transactions < amount){
+            if (transactions < amount) {
                 data.push(block.transactions[y])
                 transactions++
             }
@@ -87,4 +89,58 @@ export async function getTransactions(amount = 10) {
         blockHash = block.prev_hash;
     }
     return data
+}
+
+export async function getTransaction(hash) {
+    const response = await fetch(api + '/json_rpc', {
+        method: 'POST',
+        cache: 'no-cache',
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            jsonrpc: "2.0",
+            id: "test",
+            method: "f_transaction_json",
+            params: {
+                hash: hash
+            }
+        })
+    });
+    return await response.json();
+}
+
+export async function getBlock(height) {
+    const response = await fetch(api + '/json_rpc', {
+        method: 'POST',
+        cache: 'force-cache',
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify({
+            jsonrpc: "2.0",
+            id: "test",
+            method: "getblockheaderbyheight",
+            params: {
+                height: height
+            }
+        })
+    });
+    return await response.json();
+}
+
+export async function search(input) {
+    const tx = await getTransaction(input)
+    const block = await getByBlockHash(input)
+
+    const numbers = /^[0-9]+$/;
+
+    console.log(block)
+    if (input.match(numbers)) {
+        goto(`/block/${block.result.block.hash}`)
+    }
+
+    if (tx.error) {
+        goto(`/block/${input}`)
+    } else if (block.error) {
+        goto(`/tx/${input}`)
+    }
 }

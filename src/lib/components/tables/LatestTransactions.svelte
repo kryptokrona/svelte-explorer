@@ -57,7 +57,7 @@
   }
 
   .table-cell {
-    width: 100px;
+    width: 140px;
   }
 
   .table-body {

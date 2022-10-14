@@ -6,7 +6,8 @@
     import {explorerData} from "$lib/stores/data.js";
     import {getCurrentBlock, getLatestBlocks, getNodeData, getTransactions} from "$lib/data/get-data.js";
     import {fetchMempool} from "$lib/stores/transaction-pool.js";
-    import {checkIfNewBlock} from "$lib/utils/index.js";
+    import { checkIfNewBlock } from "$lib/utils/index.js";
+    import Navbar from "$lib/components/Navbar.svelte";
 
     let prevBlock
     let currentBlock
@@ -27,17 +28,13 @@
             await fetchMempool()
 
             if(checkIfNewBlock(prevBlock, currentBlock)) {
-                toast.success(`Block ${currentBlock.height} found`, {
+                toast.success(`Block ${currentBlock.height} found!`, {
                     position: "top-right"
                 })
             }
         }, 1000 * 10)
 
     });
-
-
-
-
 </script>
 
 
@@ -48,9 +45,9 @@
 {/if}
 
 <!--Page content-->
+<Navbar/>
 <Toaster/>
 <slot />
-
 
 <style global lang="scss">
   @import '../theme/global.scss';
