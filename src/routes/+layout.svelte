@@ -29,7 +29,7 @@
 
             if(checkIfNewBlock(prevBlock, currentBlock)) {
                 toast.success(`Block ${currentBlock.height} found!`, {
-                    position: "top-right"
+                    position: "top-center"
                 })
             }
         }, 1000 * 10)
