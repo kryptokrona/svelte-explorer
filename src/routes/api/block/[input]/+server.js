@@ -14,7 +14,7 @@ export async function GET({params}) {
     const block = await getByBlockHash(input)
 
     if (block.error) {
-        throw error('404', 'Not found')
+        throw error('404', 'Bad request')
     } else {
         return json(block)
     }
