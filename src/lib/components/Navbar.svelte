@@ -10,11 +10,15 @@
     </div>
 </nav>
 
-<style lang="css">
-    nav {
-        padding-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+<style lang="scss">
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      margin: 1rem;
+      text-decoration: none;
     }
+  }
 </style>
