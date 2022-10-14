@@ -7,8 +7,8 @@
 </script>
 
 <Network/>
-<Blockchain/>
 <div class="container">
+    <Blockchain/>
     <TransactionPool/>
 </div>
 <div class="table-pair container">
