@@ -1,3 +1,5 @@
+export let ssr = true
+
 import {getCurrentBlock, getLatestBlocks, getTransactions, getNodeData} from "$lib/data/get-data.js";
 import {explorerData} from "$lib/stores/data.js";
 
