@@ -117,7 +117,7 @@ export async function getBlock(height) {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
             jsonrpc: "2.0",
-            id: "getBlock",
+            id: "getBlockByHeight",
             method: "getblockheaderbyheight",
             params: {
                 height: height
