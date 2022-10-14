@@ -1,13 +1,6 @@
 <script>
     import {explorerData} from "$lib/stores/data.js";
-    import {calcTime} from "$lib/utils/index.js";
-    import {onMount} from "svelte";
     import {prettifyHashrate} from "$lib/utils";
-
-
-    onMount(() => {
-        getTime()
-    })
 
 </script>
 

@@ -11,10 +11,8 @@
 
     let prevBlock
     let currentBlock
-    let audio;
-    onMount(() => {
 
-        audio.src = '/pop.mp3'
+    onMount(() => {
 
         setTimeout(() => {
             $appState.loading = false
@@ -34,7 +32,6 @@
                 toast.success(`Block ${currentBlock.height} found!`, {
                     position: "top-center"
                 })
-                audio.play()
             }
         }, 1000 * 10)
 
@@ -47,7 +44,6 @@
 {/if}
 
 <Toaster/>
-<audio src="/pop.mp3" autoplay preload bind:this={audio}></audio>
 
 <!--Page content-->
 <Navbar/>
