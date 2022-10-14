@@ -2,7 +2,7 @@ import { error, json } from "@sveltejs/kit";
 import { getTransaction } from "$lib/data/get-data.js";
 
 export async function GET({params}) {
-    const input = params.input
+    const input = params.hash
 
     let data
     const tx = await getTransaction(input)
