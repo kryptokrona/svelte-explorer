@@ -15,7 +15,7 @@ export async function getCurrentBlock() {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
             jsonrpc: "2.0",
-            id: "test",
+            id: "getCurrentBlock",
             method: "getlastblockheader",
             params: {}
         })
@@ -32,7 +32,7 @@ export async function getByBlockHash(hash) {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
             jsonrpc: "2.0",
-            id: "test",
+            id: "getBlockByHash",
             method: "f_block_json",
             params: {
                 hash: hash
@@ -55,7 +55,7 @@ export async function getLatestBlocks(numberOfBlocks = 10) {
             dataType: "json",
             body: JSON.stringify({
                 jsonrpc: "2.0",
-                id: "test",
+                id: "getLatestBlock",
                 method: "getblockheaderbyheight",
                 params: {
                     height: (currentHeight - i)
@@ -99,7 +99,7 @@ export async function getTransaction(hash) {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
             jsonrpc: "2.0",
-            id: "test",
+            id: "getTransaction",
             method: "f_transaction_json",
             params: {
                 hash: hash
@@ -117,7 +117,7 @@ export async function getBlock(height) {
         referrerPolicy: 'no-referrer',
         body: JSON.stringify({
             jsonrpc: "2.0",
-            id: "test",
+            id: "getBlock",
             method: "getblockheaderbyheight",
             params: {
                 height: height
