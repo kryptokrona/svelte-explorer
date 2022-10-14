@@ -47,7 +47,7 @@
 {/if}
 
 <Toaster/>
-<audio src="/pop.mp3" bind:this={audio}></audio>
+<audio src="/pop.mp3" autoplay preload bind:this={audio}></audio>
 
 <!--Page content-->
 <Navbar/>
