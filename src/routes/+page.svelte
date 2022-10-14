@@ -3,8 +3,10 @@
     import LatestBlocks from "$lib/components/tables/LatestBlocks.svelte";
     import Network from "$lib/components/Network.svelte";
     import LatestTransactions from "$lib/components/tables/LatestTransactions.svelte";
+    import Blockchain from "$lib/components/Blockchain.svelte";
 </script>
 
+<Blockchain/>
 <Network/>
 <div class="container">
     <TransactionPool/>
