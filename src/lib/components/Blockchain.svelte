@@ -3,8 +3,6 @@
     import {fade} from 'svelte/transition'
     import { Moon } from 'svelte-loading-spinners'
     import Time from "svelte-time";
-
-    console.log($explorerData.blocks.slice(0,6))
 </script>
 
 <div class="container wrapper">
