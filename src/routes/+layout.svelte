@@ -32,6 +32,8 @@
                 toast.success(`Block ${currentBlock.height} found!`, {
                     position: "top-center"
                 })
+                $explorerData.newBlock = true
+                setTimeout(() => {$explorerData.newBlock = false}, 1000)
             }
         }, 1000 * 10)
     });

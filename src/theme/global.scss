@@ -75,3 +75,13 @@ a {
   width: 100%;
   background-color: var(--row-divider-color);
 }
+
+.blink_me {
+  animation: blinker 250ms linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    border-color: #3FD782;
+  }
+}

@@ -1,7 +1,6 @@
 <script>
     import {explorerData} from "$lib/stores/data";
     import {flip} from 'svelte/animate'
-    import {fly} from 'svelte/transition'
     import {Moon} from 'svelte-loading-spinners'
     import Time from "svelte-time";
     import {goto} from "$app/navigation";
@@ -9,17 +8,13 @@
 </script>
 
 <div class="wrapper">
-    <div class="block">
-        {#key $explorerData.node.height}
-            <h4>
-                <span style="display: inline-block" in:fly={{ y: -20 }}>
-                    {$explorerData.node.height}
-                </span>
-            </h4>
-        {/key}
-        <Moon color="var(--title-color)" size="30"/>
-        <div></div>
-    </div>
+    {#key $explorerData.node.height}
+        <div class="block transparent" class:blink_me={$explorerData.newBlock}>
+            <div></div>
+            <Moon color="var(--title-color)" size="30"/>
+            <div></div>
+        </div>
+    {/key}
     {#each $explorerData.blocks.slice(0, 6) ?? [] as block (block.hash)}
         <div animate:flip={{duration: 250, easing: quadInOut}} class="block clickable"
              on:click={() => goto(`/block/${block.hash}`)}>
@@ -70,6 +65,10 @@
       opacity: 50%;
       text-align: center;
     }
+  }
+
+  .transparent {
+    background-color: transparent;
   }
 
   .clickable {

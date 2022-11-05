@@ -5,4 +5,5 @@ export const explorerData = writable({
     block: null,
     blocks: [],
     transactions: [],
+    newBlock: false,
 })
