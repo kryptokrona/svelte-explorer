@@ -1,19 +1,28 @@
 <script>
     import {explorerData} from "$lib/stores/data";
-    import {fly, fade} from 'svelte/transition'
+    import {flip} from 'svelte/animate'
+    import {fly} from 'svelte/transition'
     import {Moon} from 'svelte-loading-spinners'
     import Time from "svelte-time";
     import {goto} from "$app/navigation";
+    import {quadInOut} from "svelte/easing";
 </script>
 
 <div class="wrapper">
     <div class="block">
-        <h4>{$explorerData.node.height}</h4>
+        {#key $explorerData.node.height}
+            <h4>
+                <span style="display: inline-block" in:fly={{ y: -20 }}>
+                    {$explorerData.node.height}
+                </span>
+            </h4>
+        {/key}
         <Moon color="var(--title-color)" size="30"/>
         <div></div>
     </div>
-    {#each $explorerData.blocks.slice(0, 6) ?? [] as block, i}
-        <div in:fade class="block clickable" on:click={() => goto(`/block/${block.hash}`)}>
+    {#each $explorerData.blocks.slice(0, 6) ?? [] as block (block.hash)}
+        <div animate:flip={{duration: 250, easing: quadInOut}} class="block clickable"
+             on:click={() => goto(`/block/${block.hash}`)}>
             <h4>{block.height}</h4>
             <p>{block.num_txes} txs</p>
             <p>{(block.reward / 100000).toFixed(2)}</p>
@@ -66,6 +75,7 @@
   .clickable {
     transition: 150ms ease-in-out;
     cursor: pointer;
+
     &:hover {
       background-color: var(--table-row-hover);
     }
