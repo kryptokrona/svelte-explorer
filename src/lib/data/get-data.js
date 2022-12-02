@@ -1,6 +1,6 @@
 import {goto} from "$app/navigation";
 
-let api = "https://blocksum.org/api";
+let api = "http://swepool.org:11898";
 
 export async function getNodeData() {
     const req = await fetch(api + '/getinfo')
