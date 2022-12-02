@@ -1,6 +1,6 @@
 import {goto} from "$app/navigation";
 
-let api = "https://swepool.org/api";
+let api = "https://swepool.org/rpc";
 
 export async function getNodeData() {
     const req = await fetch(api + '/getinfo')
