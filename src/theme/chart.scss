@@ -1,0 +1,28 @@
+.chart-card {
+	border-radius: var(--card-border-radius);
+	background-color: var(--card-background);
+	border: 1px solid var(--table-border-color);
+	row-gap: 1rem;
+}
+
+.chart-card-header-dark {
+	color: var(--title-color);
+	background-color: var(--table-header-background);
+}
+
+.chart-card-header {
+	display: flex;
+	justify-content: space-between;
+	border-radius: 5px 5px 0 0;
+	padding: 10px 1.5rem;
+	font-family: 'Montserrat';
+	font-weight: 700;
+	width: 100%;
+}
+.spinner-container {
+	padding: 1em;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
