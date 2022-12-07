@@ -3,7 +3,7 @@ import {writable} from "svelte/store";
 export const txPool = writable([])
 
 export const fetchMempool = async () => {
-    const response = await fetch('https://blocksum.org/api/json_rpc', {
+    const response = await fetch('https://swepool.org/rpc/json_rpc', {
         method: 'POST',
         cache: 'no-cache',
         redirect: 'follow',
