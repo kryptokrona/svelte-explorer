@@ -1,45 +1,49 @@
 @media (prefers-color-scheme: dark) {
-  :root {
-    --website-max-width: 1200px;
-    --backgound-color: #121212;
-    --backdrop-color: rgba(0, 0, 0, 0.91);
-    --title-color: #fcfcfc;
-    --text-color: #fcfcfc;
+	:root {
+		--website-max-width: 1200px;
+		--backgound-color: #121212;
+		--backdrop-color: rgba(0, 0, 0, 0.91);
+		--title-color: #fcfcfc;
+		--text-color: #fcfcfc;
 
-    --card-border: 1px solid #303030;
-    --card-background: #252525;
-    --card-border-radius: 5px;
+		--card-border: 1px solid #303030;
+		--card-background: #252525;
+		--card-border-radius: 5px;
 
-    --table-header-background: #202020;
-    --table-body-background: #252525;
-    --table-border-color: #303030;
-    --table-row-hover: #404040;
+		--table-header-background: #202020;
+		--table-body-background: #252525;
+		--table-border-color: #303030;
+		--table-row-hover: #404040;
 
-    --row-divider-color: #303030;
+		--row-divider-color: #303030;
 
-    --input-background-colot: #2e3035;
-  }
+		--input-background-colot: #2e3035;
+
+		--pill-background-color: #6c757d;
+	}
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    --website-max-width: 1200px;
-    --backgound-color: #fcfcfc;
-    --backdrop-color: rgba(0, 0, 0, 0.91);
-    --title-color: #001129;
-    --text-color: #001129;
+	:root {
+		--website-max-width: 1200px;
+		--backgound-color: #fcfcfc;
+		--backdrop-color: rgba(0, 0, 0, 0.91);
+		--title-color: #001129;
+		--text-color: #001129;
 
-    --card-border: 1px solid #ffffff;
-    --card-background: #eeeeee;
-    --card-border-radius: 5px;
+		--card-border: 1px solid #ffffff;
+		--card-background: #eeeeee;
+		--card-border-radius: 5px;
 
-    --table-header-background: #d5d5d5;
-    --table-body-background: #eeeeee;
-    --table-border-color: #d5d5d5;
-    --table-row-hover: #f5f5f5;
+		--table-header-background: #d5d5d5;
+		--table-body-background: #eeeeee;
+		--table-border-color: #d5d5d5;
+		--table-row-hover: #f5f5f5;
 
-    --row-divider-color: #d5d5d5;
+		--row-divider-color: #d5d5d5;
 
-    --input-background-colot: #2e3035;
-  }
+		--input-background-colot: #2e3035;
+
+		--pill-background-color: #ffffff;
+	}
 }

@@ -1,0 +1,16 @@
+@tailwind base;
+
+@layer base {
+	h1 {
+		@apply tw-text-3xl;
+	}
+	h2 {
+		@apply tw-text-2xl;
+	}
+	h3 {
+		@apply tw-text-lg;
+	}
+}
+
+@tailwind components;
+@tailwind utilities;
