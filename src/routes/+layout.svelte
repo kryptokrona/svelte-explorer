@@ -45,6 +45,8 @@
 			$chartData = await getChartData();
 			currentBlock = $explorerData.block;
 
+			await fetchMempool();
+
 			if (checkIfNewBlock(prevBlock, currentBlock)) {
 				toast.success(`Block ${currentBlock.height} found!`, {
 					position: 'top-center'

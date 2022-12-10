@@ -75,23 +75,8 @@
 				],
 				xaxis: {
 					labels: {
-						padding: 0,
 						formatter: function (value) {
 							return value;
-						}
-					},
-					tooltip: {
-						enabled: false
-					},
-					axisBorder: {
-						show: false
-					}
-				},
-				yaxis: {
-					labels: {
-						padding: 4,
-						formatter: function (value) {
-							return numberWithCommas(parseInt(value));
 						}
 					}
 				},

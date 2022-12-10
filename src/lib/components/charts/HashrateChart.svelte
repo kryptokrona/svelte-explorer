@@ -64,13 +64,6 @@
 						}
 					}
 				},
-				yaxis: {
-					labels: {
-						formatter: function (value) {
-							return prettifyHashrate(value, 2);
-						}
-					}
-				},
 				labels: $chartData.blockTime
 			});
 			return;

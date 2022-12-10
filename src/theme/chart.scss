@@ -26,3 +26,31 @@
 	justify-content: center;
 	align-items: center;
 }
+
+.apexcharts-legend-text {
+	color: var(--text-color) !important;
+}
+
+.apexcharts-tooltip {
+	line-height: 1;
+	color: var(--text-color);
+	background: var(--table-header-background) !important;
+	border: 0 !important;
+	border-radius: 3px !important;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	white-space: nowrap;
+	z-index: 12;
+	pointer-events: none;
+	position: absolute;
+	box-shadow: 1px 1px 6px -4px var(--table-header-background);
+	cursor: default;
+	font-size: 14px;
+}
+
+.apexcharts-tooltip-title {
+	border-bottom: none !important;
+	background: var(--table-header-background) !important;
+	margin-top: 5px;
+}
