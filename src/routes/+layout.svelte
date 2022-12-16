@@ -4,11 +4,6 @@
 	import Navbar from '$lib/components/Navbar.svelte';
 </script>
 
-<!--Loading screen with animated logo
-{#if $appState.loading}
-	<LoadingScreen />
-{/if}
--->
 <Toaster />
 
 <!--Page content-->
