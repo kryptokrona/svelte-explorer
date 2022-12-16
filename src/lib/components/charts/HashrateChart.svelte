@@ -82,14 +82,14 @@
 			fill={true}
 			text={$chartData.hashRate.length
 				? getReadableHashRateString($chartData.hashRate[$chartData.hashRate.length - 1])
-				: ''}
+				: '0'}
 		/>
 		<h5>Difficulty</h5>
 		<Pill
 			fill={true}
 			text={$chartData.difficulty.length
 				? getReadableDifficultyString($chartData.difficulty[$chartData.difficulty.length - 1])
-				: ''}
+				: '0'}
 		/>
 	</div>
 	{#if !hashrateChart}
