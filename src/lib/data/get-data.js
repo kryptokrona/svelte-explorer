@@ -1,7 +1,6 @@
 import { goto } from '$app/navigation';
 
-
-let api = "https://swepool.org/rpc";
+let api = 'https://swepool.org/rpc';
 
 export async function getNodeData() {
 	const req = await fetch(api + '/getinfo');
@@ -195,29 +194,32 @@ export const getHuginData = async (days = 31) => {
 		let thisURLPrivate = `${cacheURL}/api/v1/posts-encrypted?from=${yesterday_timestamp}&to=${today_timestamp}&size=1&page=1`;
 		let thisURLGroups = `${cacheURL}/api/v1/posts-encrypted-group?from=${yesterday_timestamp}&to=${today_timestamp}&size=1&page=1`;
 
-		let re_bm = await fetch(thisURLBoards);
-		let json_bm = await re_bm.json();
-		boardMessages[i] = json_bm.total_pages;
+		try {
+			let re_bm = await fetch(thisURLBoards);
+			let json_bm = await re_bm.json();
+			boardMessages[i] = json_bm.total_pages;
 
-		let re_pvt = await fetch(thisURLPrivate);
-		let json_pvt = await re_pvt.json();
-		privateMessages[i] = json_pvt.total_pages;
+			let re_pvt = await fetch(thisURLPrivate);
+			let json_pvt = await re_pvt.json();
+			privateMessages[i] = json_pvt.total_pages;
 
-		let re_grps = await fetch(thisURLGroups);
-		let json_grps = await re_grps.json();
-		groupMessages[i] = json_grps.total_pages;
+			let re_grps = await fetch(thisURLGroups);
+			let json_grps = await re_grps.json();
+			groupMessages[i] = json_grps.total_pages;
 
-		labels[i] = today_iso.split('T')[0];
+			labels[i] = today_iso.split('T')[0];
 
-		today_iso = now.toISOString();
-		now.setDate(now.getDate() - 1);
+			today_iso = now.toISOString();
+			now.setDate(now.getDate() - 1);
 
-		yesterday_iso = now.toISOString();
+			yesterday_iso = now.toISOString();
 
-		today_timestamp = yesterday_timestamp - 1;
-		yesterday_timestamp = today_timestamp - 86400;
+			today_timestamp = yesterday_timestamp - 1;
+			yesterday_timestamp = today_timestamp - 86400;
+		} catch (error) {
+			continue;
+		}
 	}
-
 	boardMessages.reverse();
 	privateMessages.reverse();
 	groupMessages.reverse();
