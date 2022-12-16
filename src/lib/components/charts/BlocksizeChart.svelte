@@ -89,7 +89,7 @@
 			fill={true}
 			text={$chartData.blockSize.length
 				? $chartData.blockSize[$chartData.blockSize.length - 1]
-				: ''}
+				: '0'}
 		/>
 	</div>
 	{#if !blocksizeChart}
