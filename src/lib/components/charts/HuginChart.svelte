@@ -110,7 +110,7 @@
 	<div class="chart-card-header chart-card-header-dark">
 		<h5>Hugin Activity</h5>
 		<Pill
-			fill={true}
+			color="gray"
 			text={$huginData.boardMessages.length > 0
 				? $huginData.boardMessages[$huginData.boardMessages.length - 1] +
 				  $huginData.privateMessages[$huginData.privateMessages.length - 1] +

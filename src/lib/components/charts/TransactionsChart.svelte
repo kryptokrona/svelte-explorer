@@ -78,7 +78,7 @@
 	<div class="chart-card-header chart-card-header-dark">
 		<h5>Transactions</h5>
 		<Pill
-			fill={true}
+			color="gray"
 			text={$chartData.transactions.length > 0
 				? $chartData.transactions[$chartData.transactions.length - 1]
 				: 0}

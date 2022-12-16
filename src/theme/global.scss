@@ -88,6 +88,10 @@ a {
 	animation: blinker 250ms linear infinite;
 }
 
+.active {
+	opacity: 1 !important;
+}
+
 @keyframes blinker {
 	50% {
 		border-color: #3fd782;
