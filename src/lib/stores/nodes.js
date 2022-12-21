@@ -7,5 +7,3 @@ export const fetchNodes = async () => {
 	let data = await response.json();
 	nodes.set(data.nodes);
 };
-
-fetchNodes();

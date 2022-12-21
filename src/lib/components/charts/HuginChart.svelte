@@ -111,7 +111,7 @@
 <div class="chart-card tw-mt-4">
 	<div class="chart-card-header chart-card-header-dark">
 		<h5>Hugin Activity</h5>
-		<Pill fill={true} text={totalActivity} />
+		<Pill color="gray" text={totalActivity} />
 	</div>
 	{#if !huginChart}
 		<div class="spinner-container">
