@@ -1,6 +1,6 @@
 import { goto } from '$app/navigation';
 
-let api = 'https://swepool.org/rpc';
+let api = 'https://blocksum.org/api';
 
 export async function getNodeData() {
 	const req = await fetch(api + '/getinfo');
@@ -142,7 +142,7 @@ export async function search(input) {
 	}
 }
 
-export async function getChartData() {
+export const getChartData = async () => {
 	let latestBlocks = await getLatestBlocks(100);
 
 	let difficulty_target = 90;
@@ -172,7 +172,7 @@ export async function getChartData() {
 		difficulty: difficulty,
 		knownBlocks: knownBlocks
 	};
-}
+};
 
 export const getHuginData = async (days = 31) => {
 	// let cacheURL = Globals.preferences.cache ? Globals.preferences.cache : Config.defaultCache;
