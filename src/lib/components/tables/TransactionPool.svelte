@@ -9,7 +9,7 @@
 		<h2>Mempool</h2>
 		<Pill text={$txPool.length} />
 	</div>
-	<div class="wrapper">
+	<div class="table-wrapper ">
 		<div class="table-header">
 			<div class="table-row">
 				<div class="table-cell"><h5>Hash</h5></div>
@@ -33,52 +33,11 @@
 </div>
 
 <style lang="scss">
-	.wrapper {
-		border: 1px solid var(--table-border-color);
-		border-radius: 5px;
-	}
-
-	.title {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 1rem;
-		margin: 1rem;
-	}
-
-	.table-header {
-		background-color: var(--table-header-background);
-		border-radius: 5px 5px 0 0;
-	}
-
-	.table-row {
-		display: flex;
-		justify-content: space-between;
-		padding: 10px 1.5rem;
-	}
-
 	.table-cell {
 		width: 120px;
 	}
 
 	.table-body {
-		background-color: var(--table-body-background);
 		height: 282px;
-		overflow: scroll;
-		border-radius: 0 0 5px 5px;
-
-		&::-webkit-scrollbar {
-			display: none;
-		}
-	}
-
-	.end {
-		text-align: end;
-	}
-
-	@media screen and (max-width: 568px) {
-		.hide {
-			display: none;
-		}
 	}
 </style>

@@ -1,45 +1,114 @@
 <script>
-	import { pools } from '$lib/stores/mining-pools.js';
-	import { prettifyHashrate, numberWithCommas } from '$lib/utils/index';
+	import {
+		pools,
+		realHeight,
+		getHashSum,
+		getMiningPools,
+		getRealHeight
+	} from '$lib/stores/mining-pools.js';
+	import { prettifyHashrate, getPercentage } from '$lib/utils/index';
+	import HashrateTableChart from './components/HashrateTableChart.svelte';
+	import ProgressBar from '$lib/components/ProgressBar.svelte';
+	import { goto } from '$app/navigation';
+	import { onMount, onDestroy } from 'svelte';
+
+	export let data;
+	$pools = data.pools;
+	$realHeight = getRealHeight($pools);
+	let interval;
+
+	onDestroy(() => {
+		clearInterval(interval);
+	});
+
+	onMount(() => {
+		interval = setInterval(async () => {
+			$pools = await getMiningPools();
+			$realHeight = getRealHeight($pools);
+		}, 1000 * 10);
+	});
+
+	const hasData = (value) => {
+		return value != null && value != undefined;
+	};
 </script>
 
 <div class="container">
-	<div class="wrapper tw-mt-8">
+	<div class="table-wrapper tw-mt-8">
 		<div class="table-header">
-			<h5>Nodes</h5>
+			<div class="table-row">
+				<h4>Pools</h4>
+			</div>
 		</div>
-		<div class="table-body">
+		<div class="big-table-body">
 			<table>
 				<thead>
 					<tr>
-						<th style="min-width:120px;">Name</th>
-						<th style="min-width:200px;">Url</th>
-						<th class="tw-text-center" style="min-width:100px;">Height</th>
-						<th class="tw-text-center" style="min-width:100px;">Hashrate</th>
-						<th class="tw-text-center" style="min-width:80px;">Solo hashrate</th>
-						<th class="tw-text-center" style="min-width:80px;">Miners</th>
-						<th class="tw-text-center" style="min-width:80px;">Solo miners</th>
-						<th class="tw-text-center" style="min-width:80px;">Fee</th>
+						<th style="min-width:160px;">Pool</th>
+						<th class="tw-text-left" style="min-width:100px;">Miners</th>
+						<th class="tw-text-left hide" style="min-width:80px;">Solo Miners</th>
+						<th class="tw-text-left" style="min-width:100px;">Fee</th>
+
+						<th class="tw-text-left" style="min-width:100px;">Hashrate History</th>
+						<th class="tw-text-left" style="min-width:100px;">Hashrate</th>
+						<th class="tw-text-left hide" style="min-width:100px;">Network Hashrate</th>
+						<th class="tw-text-left" style="min-width:100px;">Height</th>
 					</tr>
 				</thead>
 				<tbody>
 					{#each $pools ?? [] as pool}
-						<tr>
-							<td>{pool.name}</td>
-							<td>{pool.url}</td>
-							<td class="tw-text-center">{pool.data.network.height}</td>
-							<td class="tw-text-center">{prettifyHashrate(pool.data.pool.hashrate, 2)}</td>
-							<td class="tw-text-center"
-								>{prettifyHashrate(
-									pool.data.pool.hashrateSolo ? pool.data.pool.hashrateSolo : 0,
-									2
-								)}</td
-							>
-							<td class="tw-text-center">{numberWithCommas(pool.data.pool.miners)}</td>
-							<td class="tw-text-center"
-								>{numberWithCommas(pool.data.pool.minersSolo ? pool.data.pool.minersSolo : 0)}</td
-							>
-							<td class="tw-text-center">{pool.data.config.fee}%</td>
+						<tr on:click={() => goto(`/pool/${pool.name}`)} class="table-row-clickable">
+							<td><a href={pool.url}>{pool.name}</a></td>
+
+							{#if hasData(pool.data?.pool?.miners)}
+								<td class="tw-text-left">{pool.data.pool.miners}</td>
+							{:else}
+								<td class="tw-text-left" />
+							{/if}
+
+							{#if hasData(pool.data?.pool?.minersSolo)}
+								<td class="tw-text-left hide">{pool.data.pool.minersSolo}</td>
+							{:else}
+								<td class="tw-text-left hide" />
+							{/if}
+
+							{#if hasData(pool.data?.config?.fee)}
+								<td class="tw-text-left">{pool.data.config.fee + '%'}</td>
+							{:else}
+								<td class="tw-text-left" />
+							{/if}
+
+							{#if hasData(pool.data?.hashrateArray)}
+								<td class="tw-text-left"><HashrateTableChart data={pool.data.hashrateArray} /></td>
+							{:else}
+								<td class="tw-text-left" />
+							{/if}
+
+							{#if hasData(pool.data?.pool?.hashrate)}
+								<td class="tw-text-left">{prettifyHashrate(pool.data.pool.hashrate, 2)}</td>
+							{:else}
+								<td class="tw-text-left" />
+							{/if}
+
+							{#if hasData(pool.data?.pool?.hashrate)}
+								<td class="tw-text-left hide"
+									><ProgressBar
+										percentage={getPercentage(getHashSum($pools), pool.data.pool.hashrate, 1)}
+									/></td
+								>
+							{:else}
+								<td class="tw-text-left hide" />
+							{/if}
+
+							{#if hasData(pool.data?.network?.height)}
+								<td
+									class={Math.abs($realHeight - pool.data.network.height) > 2
+										? 'red tw-text-left"'
+										: 'tw-text-left"'}>{pool.data.network.height}</td
+								>
+							{:else}
+								<td class="tw-text-left" />
+							{/if}
 						</tr>
 					{/each}
 				</tbody>
@@ -49,49 +118,8 @@
 </div>
 
 <style lang="scss">
-	table {
-		font-size: 0.9em;
-		color: white;
-		text-align: left;
-		border-collapse: collapse;
+	.red {
+		color: var(--red);
 	}
-	tr {
-		border-bottom: 1px solid var(--row-divider-color);
-	}
-	td {
-		opacity: 0.8;
-		padding: 10px 4px;
-		transition: 150ms ease-in-out;
-	}
-	th {
-		padding: 10px 4px;
-		transition: 150ms ease-in-out;
-	}
-	.wrapper {
-		width: auto;
-		border: 1px solid var(--table-border-color);
-		border-radius: 5px;
-	}
-	.table-header {
-		background-color: var(--table-header-background);
-		border-radius: 5px 5px 0 0;
-		padding: 10px 1.5rem;
-	}
-	.table-body {
-		display: flex;
-		justify-content: center;
-		padding: 10px 1.5rem;
-		background-color: var(--table-body-background);
-		overflow-y: scroll;
-		border-radius: 0 0 5px 5px;
-		&::-webkit-scrollbar {
-			display: none;
-		}
-	}
-
-	@media screen and (max-width: 768px) {
-		.table-body {
-			display: block;
-		}
-	}
+	@import '../../theme/big-table.scss';
 </style>

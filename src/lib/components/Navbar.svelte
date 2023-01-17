@@ -3,7 +3,6 @@
 	import { page } from '$app/stores';
 	import Search from '$lib/components/Search.svelte';
 	import Logo from '$lib/components/Logo.svelte';
-	import { ServerIcon, ListIcon } from '$lib/components/icons/icons.js';
 
 	let activeElement;
 
@@ -33,14 +32,24 @@
 			<a href="/" id="home" class="tw-mr-10" aria-label="home" on:click={() => toggleActive('home')}
 				><Logo /></a
 			>
-			<a href="/nodes" id="nodes" aria-label="nodes" on:click={() => toggleActive('nodes')}>
-				<ServerIcon classes="tw-w-6 tw-h-6 tw-mr-1 tw-ml-2" />
-				nodes</a
+			<a
+				href="/nodes"
+				data-sveltekit-prefetch
+				id="nodes"
+				aria-label="nodes"
+				on:click={() => toggleActive('nodes')}
 			>
-			<a href="/pools" id="pools" aria-label="pools" on:click={() => toggleActive('pools')}
-				><ListIcon classes="tw-w-6 tw-h-6 tw-mr-1 tw-ml-2" />
-				pools</a
+				<i class="fa-solid fa-server tw-mr-2 tw-ml-2" aria-hidden="true" />
+			</a>
+			<a
+				href="/pools"
+				data-sveltekit-prefetch
+				id="pools"
+				aria-label="pools"
+				on:click={() => toggleActive('pools')}
 			>
+				<i class="fa-solid fa-water-ladder tw-mr-2 tw-ml-2" aria-hidden="true" />
+			</a>
 		</div>
 
 		<Search />

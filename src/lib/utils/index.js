@@ -77,3 +77,7 @@ export function getReadableDifficultyString(difficulty, precision) {
 		units[number]
 	);
 }
+
+export const getPercentage = (total, value, decimals) => {
+	return parseFloat(((value / total) * 100).toFixed(decimals));
+};

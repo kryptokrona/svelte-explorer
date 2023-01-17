@@ -77,7 +77,7 @@
 
 <div class="chart-card tw-mt-4">
 	<div class="chart-card-header chart-card-header-dark">
-		<h5>Hash rate</h5>
+		<h5>Hashrate</h5>
 		<Pill
 			color="gray"
 			text={$chartData.hashRate.length
