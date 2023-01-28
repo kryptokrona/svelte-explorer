@@ -15,19 +15,6 @@ export const getNodes = async () => {
 };
 
 export const getRealHeight = (nodes) => {
-	if (nodes.length == 0) return null;
-	var modeMap = {};
-	var maxEl = nodes[0],
-		maxCount = 1;
-	for (var i = 0; i < nodes.length; i++) {
-		if (!nodes[i].nodeHeight || nodes[i].nodeHeight == 0) continue;
-		var height = nodes[i].nodeHeight;
-		if (modeMap[height] == null) modeMap[height] = 1;
-		else modeMap[height]++;
-		if (modeMap[height] > maxCount) {
-			maxEl = height;
-			maxCount = modeMap[height];
-		}
-	}
-	return maxEl;
+	nodes = nodes.filter((n) => n.nodeHeight);
+	return Math.max(...nodes.map((n) => n.nodeHeight));
 };

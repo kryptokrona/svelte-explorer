@@ -79,19 +79,6 @@ export const getHashSum = (pools) => {
 };
 
 export const getRealHeight = (pools) => {
-	if (pools.length == 0) return null;
-	var modeMap = {};
-	var maxEl = pools[0],
-		maxCount = 1;
-	for (var i = 0; i < pools.length; i++) {
-		if (!pools[i].data?.network?.height || pools[i].data.network.height == 0) continue;
-		var height = pools[i].data.network.height;
-		if (modeMap[height] == null) modeMap[height] = 1;
-		else modeMap[height]++;
-		if (modeMap[height] > maxCount) {
-			maxEl = height;
-			maxCount = modeMap[height];
-		}
-	}
-	return maxEl;
+	pools = pools.filter((p) => p.data?.network);
+	return Math.max(...pools.map((p) => p.data.network.height));
 };
