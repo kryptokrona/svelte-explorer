@@ -1,0 +1,40 @@
+.big-table-body {
+	max-height: 70vh;
+	display: flex;
+	justify-content: center;
+	padding: 10px 1.5rem;
+	background-color: var(--table-body-background);
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border-radius: 0 0 5px 5px;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	table {
+		font-family: 'Roboto Mono', serif;
+		font-size: 0.9em;
+		color: var(--text-color);
+		text-align: left;
+		border-collapse: collapse;
+	}
+
+	tr {
+		border-bottom: 1px solid var(--row-divider-color);
+	}
+	td {
+		padding: 0.6em 0.6em;
+		transition: 150ms ease-in-out;
+	}
+	th {
+		padding: 0.6em 0.6em;
+		transition: 150ms ease-in-out;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.big-table-body {
+		display: block;
+		overflow-x: scroll;
+	}
+}

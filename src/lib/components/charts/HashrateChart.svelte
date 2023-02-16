@@ -77,16 +77,16 @@
 
 <div class="chart-card tw-mt-4">
 	<div class="chart-card-header chart-card-header-dark">
-		<h5>Hash rate</h5>
+		<h5>Hashrate</h5>
 		<Pill
-			fill={true}
+			color="gray"
 			text={$chartData.hashRate.length
 				? getReadableHashRateString($chartData.hashRate[$chartData.hashRate.length - 1])
 				: '0'}
 		/>
 		<h5>Difficulty</h5>
 		<Pill
-			fill={true}
+			color="gray"
 			text={$chartData.difficulty.length
 				? getReadableDifficultyString($chartData.difficulty[$chartData.difficulty.length - 1])
 				: '0'}

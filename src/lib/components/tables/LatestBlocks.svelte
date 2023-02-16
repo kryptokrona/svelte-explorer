@@ -8,7 +8,7 @@
     <div class="title">
         <h2>Blocks</h2>
     </div>
-    <div class="wrapper">
+    <div class="table-wrapper">
         <div class="table-header">
             <div class="table-row-header">
                 <div class="table-cell"><h5>Height</h5></div>
@@ -18,7 +18,7 @@
         </div>
         <div class="table-body">
             {#each $explorerData.blocks ?? [] as block}
-                <div class="table-row" on:click={() => goto(`/block/${block.hash}`)}>
+                <div class="table-row table-row-clickable" on:click={() => goto(`/block/${block.hash}`)}>
                     <div class="table-cell"><p>{block.height}</p></div>
                     <div class="table-cell end hide"><p>{block.num_txes} TX's</p></div>
                     <div class="table-cell end"><p>{formatXksAmount((block.reward / 100000), 2)}</p></div>
@@ -28,66 +28,3 @@
         </div>
     </div>
 </div>
-
-<style lang="scss">
-
-  .wrapper {
-    border: 1px solid var(--table-border-color);
-    border-radius: 5px
-  }
-
-  .title {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    margin: 1rem;
-  }
-
-  .table-header {
-    background-color: var(--table-header-background);
-    border-radius: 5px 5px 0 0;
-  }
-
-  .table-row-header {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 1.5rem;
-  }
-
-  .table-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 1.5rem;
-    transition: 150ms ease-in-out;
-
-    &:hover {
-      background-color: var(--table-row-hover);
-      cursor: pointer;
-    }
-  }
-
-  .table-cell {
-    min-width: 120px;
-  }
-
-  .table-body {
-    background-color: var(--table-body-background);
-    min-height: 200px;
-    overflow: scroll;
-    border-radius: 0 0 5px 5px;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .end {
-    text-align: end;
-  }
-
-  @media screen and (max-width: 568px) {
-    .hide {
-      display: none;
-    }
-  }
-</style>

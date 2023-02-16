@@ -86,7 +86,7 @@
 	<div class="chart-card-header chart-card-header-dark">
 		<h5>Block size</h5>
 		<Pill
-			fill={true}
+			color="gray"
 			text={$chartData.blockSize.length
 				? $chartData.blockSize[$chartData.blockSize.length - 1]
 				: '0'}

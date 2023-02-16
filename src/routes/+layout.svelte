@@ -4,7 +4,7 @@
 	import toast from 'svelte-french-toast';
 	import LoadingScreen from '$lib/components/LoadingScreen.svelte';
 	import { appState } from '$lib/stores/app-state.js';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { explorerData, chartData, huginData } from '$lib/stores/data.js';
 	import {
 		getCurrentBlock,
@@ -17,11 +17,18 @@
 	import { fetchMempool } from '$lib/stores/transaction-pool.js';
 	import { checkIfNewBlock } from '$lib/utils/index.js';
 
-	let prevBlock;
-	let currentBlock;
-
 	export let data;
 	$explorerData = data;
+
+	let prevBlock;
+	let currentBlock;
+	let explorerinterval;
+	let huginInterval;
+
+	onDestroy(() => {
+		clearInterval(explorerinterval);
+		clearInterval(huginInterval);
+	});
 
 	onMount(async () => {
 		setTimeout(() => {
@@ -32,7 +39,7 @@
 		loadHuginData();
 
 		prevBlock = $explorerData.block;
-		setInterval(async () => {
+		explorerinterval = setInterval(async () => {
 			prevBlock = $explorerData.block;
 			$explorerData.node = await getNodeData();
 			$explorerData.transactions = await getTransactions();
@@ -54,7 +61,7 @@
 			}
 		}, 1000 * 10);
 
-		setInterval(async () => {
+		huginInterval = setInterval(async () => {
 			const latestHuginData = await getHuginData(1);
 			if (latestHuginData.groupMessages[0]) {
 				$huginData.groupMessages[0] = latestHuginData.groupMessages[0];

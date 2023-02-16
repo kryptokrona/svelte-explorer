@@ -1,4 +1,5 @@
 @import './chart.scss';
+@import './table.scss';
 
 @font-face {
 	font-family: 'Montserrat';
@@ -86,6 +87,10 @@ a {
 
 .blink_me {
 	animation: blinker 250ms linear infinite;
+}
+
+.active {
+	opacity: 1 !important;
 }
 
 @keyframes blinker {
