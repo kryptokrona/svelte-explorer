@@ -1,6 +1,7 @@
 export let ssr = true;
 
 import {
+	testApi,
 	getCurrentBlock,
 	getLatestBlocks,
 	getTransactions,
@@ -8,6 +9,8 @@ import {
 } from '$lib/data/get-data.js';
 
 export const load = async () => {
+	await testApi();
+
 	const fetchCurrentBlock = async () => {
 		return await getCurrentBlock();
 	};
