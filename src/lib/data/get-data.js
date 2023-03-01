@@ -2,6 +2,15 @@ import { goto } from '$app/navigation';
 
 let api = 'https://blocksum.org/api';
 
+export async function testApi() {
+	try {
+		await fetch(api + '/getinfo');
+		return;
+	} catch (error) {
+		api = 'http://wasa.kryptokrona.se:11898';
+	}
+}
+
 export async function getNodeData() {
 	const req = await fetch(api + '/getinfo');
 	return await req.json();

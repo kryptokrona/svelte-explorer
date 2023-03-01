@@ -7,6 +7,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { explorerData, chartData, huginData } from '$lib/stores/data.js';
 	import {
+		testApi,
 		getCurrentBlock,
 		getLatestBlocks,
 		getNodeData,
@@ -31,6 +32,8 @@
 	});
 
 	onMount(async () => {
+		await testApi();
+
 		setTimeout(() => {
 			$appState.loading = false;
 		}, 1000);
