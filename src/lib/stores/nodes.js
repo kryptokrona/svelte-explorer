@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 
 export const nodes = writable([]);
+export const nodeAPI = writable({active: "https://blocksum.org/api"});
 export const realHeight = writable(0);
 
 export const getNodes = async () => {

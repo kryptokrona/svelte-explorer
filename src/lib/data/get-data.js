@@ -1,19 +1,52 @@
 import { goto } from '$app/navigation';
+import { get } from 'svelte/store';
+import { nodeAPI } from '$lib/stores/nodes';
+let api = get(nodeAPI).active;
+const nodesUrl = `https://raw.githubusercontent.com/kryptokrona/kryptokrona-public-nodes/main/nodes.json`
 
-let api = 'https://blocksum.org/api';
+export async function checkPublicNodes(get = false) {
+	let response = await fetch(nodesUrl);
+	let nodes = await response.json()
+	for (const node of nodes.nodes) {
+		const test = `http://${node.url}:${node.port}`
+		const check = await testNode(test)
+		if (!check) continue
+		if (check) {
+			api = test
+			nodeAPI.set({active: test})
+			break;
+		}
+	}
+	if (!get) return
+	getNodeData()
+}
+
+async function testNode(node) {
+	try {
+		await fetch(node + '/getinfo');
+		return true
+	} catch (error) {
+		return false
+	}
+}
 
 export async function testApi() {
 	try {
 		await fetch(api + '/getinfo');
-		return;
 	} catch (error) {
-		api = 'http://wasa.kryptokrona.se:11898';
+		await checkPublicNodes()
 	}
 }
 
 export async function getNodeData() {
+	try {
 	const req = await fetch(api + '/getinfo');
 	return await req.json();
+
+	} catch(e) {
+		//Try get node data again with a new node
+		await checkPublicNodes(true)
+	}
 }
 
 export async function getCurrentBlock() {
@@ -80,7 +113,6 @@ export async function getTransactions(amount = 10) {
 	const currentBlock = await getCurrentBlock();
 	const currentBlockByHash = await getByBlockHash(currentBlock.hash);
 	let blockHash = currentBlockByHash.result.block.hash;
-
 	let data = [];
 
 	let transactions = 0;
