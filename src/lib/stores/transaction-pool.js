@@ -20,14 +20,14 @@ export const fetchMempool = async () => {
 				method: 'f_on_transactions_pool_json',
 				params: {}
 			})
-		});
+		}, 1000);
 	} catch (er) {
 		await checkPublicNodes()
 		api = get(nodeAPI).active
 		error = true
 		fetchMempool()
 	}
-	
+
 	if (error) return
 	let data = await response.json();
 	txPool.set(data.result.transactions);

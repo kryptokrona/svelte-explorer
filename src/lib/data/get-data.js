@@ -5,10 +5,11 @@ let api = get(nodeAPI).active;
 const nodesUrl = `https://raw.githubusercontent.com/kryptokrona/kryptokrona-public-nodes/main/nodes.json`
 
 export async function checkPublicNodes(get = false) {
-	let response = await fetch(nodesUrl);
+	let response = await fetch(nodesUrl, {}, 1000);
 	let nodes = await response.json()
 	for (const node of nodes.nodes) {
-		const test = `http://${node.url}:${node.port}`
+		if (node.ssl === false) continue
+		const test = `https://${node.url}:${node.port}`
 		const check = await testNode(test)
 		if (!check) continue
 		if (check) {
@@ -23,7 +24,7 @@ export async function checkPublicNodes(get = false) {
 
 async function testNode(node) {
 	try {
-		await fetch(node + '/getinfo');
+		await fetch(node + '/getinfo', {}, 1000);
 		return true
 	} catch (error) {
 		return false
@@ -32,7 +33,8 @@ async function testNode(node) {
 
 export async function testApi() {
 	try {
-		await fetch(api + '/getinfo');
+		await fetch(api + '/getinfo', {}, 1000)
+		
 	} catch (error) {
 		await checkPublicNodes()
 	}
@@ -40,7 +42,7 @@ export async function testApi() {
 
 export async function getNodeData() {
 	try {
-	const req = await fetch(api + '/getinfo');
+	const req = await fetch(api + '/getinfo', {}, 1000);
 	return await req.json();
 
 	} catch(e) {
