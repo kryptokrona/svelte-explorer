@@ -9,7 +9,7 @@ export async function checkPublicNodes(get = false) {
 	let nodes = await response.json()
 	for (const node of nodes.nodes) {
 		if (node.ssl === false) continue
-		const test = `https://${node.url.split('/')[0]}:${node.port}${node.url.split('/')[1].length ? '/' + node.url.split('/')[1] : ''}`
+		const test = `https://${node.url.split('/')[0]}:${node.port}${node.url.split('/')[1]?.length ? '/' + node.url.split('/')[1] : ''}`
 		const check = await testNode(test)
 		if (!check) continue
 		if (check) {
