@@ -2,7 +2,7 @@ import { goto } from '$app/navigation';
 import { get } from 'svelte/store';
 import { nodeAPI } from '$lib/stores/nodes';
 let api = get(nodeAPI).active;
-const nodesUrl = `https://raw.githubusercontent.com/kryptokrona/kryptokrona-public-nodes/main/nodes.json`
+const nodesUrl = `https://raw.githubusercontent.com/kryptokrona/kryptokrona-public-nodes/refs/heads/main/nodes.json`
 
 export async function checkPublicNodes(get = false) {
 	let response = await fetch(nodesUrl, {}, 1000);
