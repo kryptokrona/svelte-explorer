@@ -6,7 +6,7 @@ export const realHeight = writable(0);
 
 export const getNodes = async () => {
 	try {
-		const response = await fetch('https://blocksum.org/api/v1/nodes', {});
+		const response = await fetch('https://raw.githubusercontent.com/kryptokrona/kryptokrona-public-nodes/refs/heads/main/nodes.json', {});
 		let data = await response.json();
 		return data.nodes;
 	} catch (error) {

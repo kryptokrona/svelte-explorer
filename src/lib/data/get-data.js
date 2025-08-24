@@ -22,12 +22,26 @@ export async function checkPublicNodes(get = false) {
 	getNodeData()
 }
 
+async function fetchWithTimeout(resource, options = {}, timeout = 1000) {
+	const controller = new AbortController();
+	const id = setTimeout(() => controller.abort(), timeout);
+	options.signal = controller.signal;
+
+	try {
+		const response = await fetch(resource, options);
+		return response;
+	} finally {
+		clearTimeout(id);
+	}
+}
+
 async function testNode(node) {
 	try {
-		await fetch(node + '/getinfo', {}, 1000);
-		return true
+		await fetchWithTimeout(node + '/getinfo', {}, 1000);
+		return true;
 	} catch (error) {
-		return false
+		// Will throw on timeout or network failure
+		return false;
 	}
 }
 

@@ -42,12 +42,11 @@
 				<i class="fa-solid fa-server tw-mr-2 tw-ml-2" aria-hidden="true" />
 			</a>
 			<a
-				href="/pools"
+				href="https://miningpoolstats.stream/kryptokrona"
 				data-sveltekit-prefetch
 				id="pools"
 				aria-label="pools"
-				on:click={() => toggleActive('pools')}
-			>
+				target="_blank">
 				<i class="fa-solid fa-water-ladder tw-mr-2 tw-ml-2" aria-hidden="true" />
 			</a>
 		</div>

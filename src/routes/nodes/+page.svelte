@@ -32,19 +32,19 @@
 					<tr>
 						<th style="min-width:180px;">Node Name</th>
 						<th style="min-width:240px;">Hostname:Port</th>
-						<th style="min-width:100px;">Fee</th>
+						<!-- <th style="min-width:100px;">Fee</th>
 						<th style="min-width:100px;">Version</th>
 						<th style="min-width:100px;">Height</th>
 						<th style="min-width:100px;">In/Out (TX)</th>
-						<th class="tw-text-center">Status</th>
+						<th class="tw-text-center">Status</th> -->
 					</tr>
 				</thead>
 				<tbody>
 					{#each $nodes ?? [] as node}
 						<tr>
-							<td>{node.nodeName}</td>
-							<td>{node.nodeUrl}:{node.nodePort}</td>
-							<td>{node.nodeFee}%</td>
+							<td>{node.name}</td>
+							<td>{node.url}:{node.port}</td>
+							<!-- <td>{node.nodeFee}%</td>
 							<td>{node.nodeVersion}</td>
 							<td class={Math.abs($realHeight - node.nodeHeight) > 2 ? 'red' : ''}
 								>{node.nodeHeight}</td
@@ -56,7 +56,7 @@
 								{:else}
 									<Pill text="Offline" color="red" />
 								{/if}
-							</td>
+							</td> -->
 						</tr>
 					{/each}
 				</tbody>

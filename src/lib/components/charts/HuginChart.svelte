@@ -115,8 +115,10 @@
 	</div>
 	{#if !huginChart}
 		<div class="spinner-container">
-			<Moon color="var(--title-color)" size="30" />
+			<!-- <Moon color="var(--title-color)" size="30" /> -->
+			<p style="text-align: center">Under construction 👷🚧🏗️</p>
 		</div>
 	{/if}
+	
 	<div id="hugin-chart" />
 </div>
