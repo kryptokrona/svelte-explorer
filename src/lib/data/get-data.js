@@ -37,8 +37,27 @@ async function fetchWithTimeout(resource, options = {}, timeout = 1000) {
 
 async function testNode(node) {
 	try {
-		await fetchWithTimeout(node + '/getinfo', {}, 1000);
-		return true;
+		const infoResponse = await fetchWithTimeout(node + '/getinfo', {}, 1000);
+		if (!infoResponse.ok) return false;
+
+		// Not all public nodes run with the block explorer enabled, but this
+		// app relies on the f_* explorer RPC methods, so confirm support.
+		const explorerResponse = await fetchWithTimeout(
+			node + '/json_rpc',
+			{
+				method: 'POST',
+				body: JSON.stringify({
+					jsonrpc: '2.0',
+					id: 'testExplorer',
+					method: 'f_blocks_list_json',
+					params: { height: 10 }
+				})
+			},
+			1000
+		);
+		if (!explorerResponse.ok) return false;
+		const explorerBody = await explorerResponse.json();
+		return Boolean(explorerBody?.result?.blocks);
 	} catch (error) {
 		// Will throw on timeout or network failure
 		return false;
